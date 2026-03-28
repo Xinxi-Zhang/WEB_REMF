@@ -1,0 +1,502 @@
+/*############################# ###################### */
+/*########################### FONTS ################  */
+/*################################################## */
+@font-face {
+  font-family: 'trajen';
+  src: url('/data/fonts/Trajan.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'kai';
+  src: url('/data/fonts/kai.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+* {
+  box-sizing: border-box; /* Ensure padding and borders are included in the width */
+  margin: 0;
+  padding: 0;
+}
+
+
+/*############################# ###################### */
+/*########################### Header ################  */
+/*################################################## */
+  /* Container for the image and navbar */
+.navbar-container {
+  position: relative; 
+  max-width: 1300px;  
+  min-width: 1300px;
+  min-height: 350px;
+  margin: 0 auto;
+}
+
+.research-container {
+  position: relative; 
+  max-width: 1300px;  
+  min-width: 1300px;
+  margin: 0 auto;
+  min-height: 50px;
+}
+
+.links-container {
+  position: relative; 
+  max-width: 1300px;  
+  min-width: 1300px;
+  margin: 0 auto;
+}
+
+.research-links {
+  margin-top: 6.6rem; /* Add space on top */
+  margin-left: 1.5rem;
+  justify-content: left;
+  font-family: "trajan-pro-3", serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* Half-image that the navbar overlays */
+.header-image {
+  margin-top: 95px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 90%; /* Full width of the navbar length */
+  object-fit: cover; /* Ensures the image scales nicely */
+}
+
+
+
+.hero-links {
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;                 /* space between items */
+  font-family: "trajan-pro-3", serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 23px;
+}
+
+.hero-links a {
+  color: #000;
+  text-decoration: underline;
+  font-size: 20px;
+  font-family: "trajan-pro-3", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hero-links a:hover {
+  background: #000;
+  color: #fff;
+}
+
+.hero-header-container {
+  position: relative; 
+  max-width: 1300px;  
+  min-width: 1300px;
+  margin: 0 auto;
+}
+
+.hero-header {
+  position: relative;          /* you probably already have this */
+  padding: 3rem;
+}
+
+/* bottom-right text */
+.hero-meta {
+  position: absolute;
+  right: 4.5rem;
+  bottom: 4rem;
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: 1000;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  z-index: 3;                  /* above triangles + background text */
+}
+
+.hero-meta-title {
+  font-size: 0.95rem;
+  font-weight: 1000;
+  font-family: "trajan-pro-3", serif;
+}
+
+.hero-meta-subtitle {
+  font-size: 0.75rem;
+  font-family: "adobe-garamond-pro", serif;
+}
+
+.about-section {
+  max-width: 1000px;
+  margin: 4rem auto 0;          /* space below header/links */
+  font-family: "trajan-pro-3", serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* "ABOUT ME" box */
+.about-label {
+  display: inline-block;
+  padding: 0.4rem 1.8rem;
+  border: 2px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  font-family: "trajan-pro-3", serif;
+}
+
+/* paragraph text */
+.about-text {
+  text-align: justify;
+  font-family: "adobe-garamond-pro", serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 1.4rem;
+}
+
+.about-text-xinxi {
+  text-align: justify;
+  font-family: "trajan-pro-3", serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.4rem;
+}
+
+/* drop cap first letter */
+.dropcap {
+  font-family: "trajan-pro-3", serif;
+  font-weight: 1000;
+  float: left;
+  font-size: 3.2rem;
+  line-height: 0.2;
+  font-weight: 100;
+}
+
+/* links inside about text */
+.about-text a {
+  color: #000;
+  font-family: "adobe-garamond-pro", serif;
+  text-decoration: underline;
+  opacity: 0.75;
+}
+
+.about-text a:hover {
+  background: #000;
+  color: #fff;
+}
+
+
+.section-bar-container {
+  position: relative; 
+  max-width: 1300px;  
+  min-width: 1300px;
+  margin: 10px auto;
+  margin-top: 50px;
+}
+
+.section-header-image {
+  width: 100%; /* Full width of the navbar length */
+  height: 100px; /* You can adjust the height of the image */
+  object-fit: cover; /* Ensures the image scales nicely */
+  opacity: 0.6; /* Set opacity to make the image semi-transparent */
+}
+
+.section_title-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Times New Roman", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: clamp(32px, 6vw, 40px);
+  color: black;
+  text-align: center;
+  z-index: 20;
+}
+
+
+
+
+
+
+/* Publications Section */
+
+/* reuse the boxed label style for multiple sections */
+.section-label,
+.about-label {
+  display: inline-block;
+  padding: 0.4rem 1.8rem;
+  border: 2px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+}
+
+
+/* projects section */
+.projects-section {
+  max-width: 1300px;
+  margin: 1rem auto 0;
+}
+
+/* stack project cards vertically */
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0rem;
+}
+
+/* each card: image left, text right */
+.project-card {
+  display: flex;
+  gap: 1.8rem;
+  padding: 1.5rem;
+}
+
+/* thumbnail */
+.project-thumb {
+  flex: 0 0 300px;
+}
+
+.project-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* text area */
+.project-body {
+  flex: 1;
+}
+
+.project-body h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.1rem;
+  font-family: "trajan-pro-3", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.project-body p {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-family: "adobe-garamond-pro", serif;
+}
+
+.project-authors a {
+  color: #000;
+  font-family: "adobe-garamond-pro", serif;
+  text-decoration: underline;
+  opacity: 0.75;
+}
+
+.project-authors a:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* default author links (optional, if you want them all consistent) */
+.project-authors a.author-link {
+  text-decoration: underline;
+}
+
+/* highlight you */
+.project-authors a.author-link.is-me {
+  color: #DB3E26;
+  text-decoration: underline;
+  font-weight: 700; /* optional, mimics <strong> */
+  opacity: 1;       /* so it doesn't look faded */
+}
+
+/* hover state for you (optional) */
+.project-authors a.author-link.is-me:hover {
+  background: #DB3E26;
+  color: #fff;
+}
+
+/* button-style link */
+.project-link {
+  display: inline-block;
+  padding: 0.35rem 1.5rem;
+  border: 1px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  color: #000;
+  text-decoration: underline;
+}
+
+.project-link:hover {
+  background: #000;
+  color: #fff;
+}
+.project-authors {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.project-tag {
+  display: inline-block;
+  padding: 0.35rem 1.5rem;
+  border: 1px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  color: #000;
+}
+
+
+@media (max-width: 900px) {
+
+  /* Make all main containers fluid instead of 1300px fixed */
+  .navbar-container,
+  .hero-header-container,
+  .section-bar-container{
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0 1rem;  /* side padding so content isn't glued to edges */
+  }
+
+  .about-section{
+    max-width: 90%;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0 1rem;  /* side padding so content isn't glued to edges */
+  }
+  .projects-section{
+    max-width: 85%;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0 1rem;  /* side padding so content isn't glued to edges */
+  }
+
+  .links-container {
+    max-width: 100%;
+    min-width: 0;
+    /* Use clamp to keep a consistent absolute gap between the header image and links, 
+       but allow some responsiveness for tiny screens */
+    margin-top: clamp(-80px, -16vw, -116rem); /* Reduced gap for more compact spacing */
+  }
+
+  .research-container{
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 3rem; 
+    padding: 0 1rem;  
+  }
+
+  /* Header image: full width, less top gap */
+  .header-image {
+    margin-top: 40px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Research title */
+  .research-links {
+    margin-top: 2rem;
+    margin-left: 0;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  /* Links under the hero: wrap and shrink a bit */
+  .hero-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-links a {
+    font-size: 0.85rem;
+  }
+
+  .hero-header {
+    margin-top: 1.5rem;
+  }
+
+  .hero-meta {
+    right: 0rem;
+    text-align: right;
+  }
+
+  .hero-meta-title {
+    font-size: clamp(0.6rem, 2vw, 0.9rem);
+  }
+
+  .hero-meta-subtitle {
+    font-size: clamp(0.44rem, 1.6vw, 0.75rem);
+  }
+
+  /* About section: slightly smaller text, less top margin */
+  .about-section {
+    margin-top: 2rem;
+  }
+
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* Project cards: stack vertically instead of image/text side-by-side */
+  .project-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .project-thumb {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .project-thumb img {
+    width: 100%;
+    height: auto;
+  }
+
+  .project-body h3 {
+    font-size: 1rem;
+  }
+
+  .project-body p {
+    font-size: 1rem;
+  }
+
+  .project-authors {
+    font-size: 0.8rem;
+  }
+
+  .project-link,
+  .project-tag {
+    display: inline-block;
+    margin-bottom: 0.4rem;
+    font-size: 0.75rem;
+  }
+}
