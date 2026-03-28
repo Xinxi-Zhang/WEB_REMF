@@ -27,8 +27,8 @@
 
   let fixedMaxAngle = 90;
   let trajCtx, surfCtx;
-  const TRAJ_W = 420, TRAJ_H = 400;
-  const SURF_W = 480, SURF_H = 420;
+  const TRAJ_W = 620, TRAJ_H = 560;
+  const SURF_W = 680, SURF_H = 580;
 
   // ── Math ──────────────────────────────────────────────
 
@@ -176,7 +176,7 @@
     const ctx = surfCtx;
     ctx.clearRect(0, 0, SURF_W, SURF_H);
 
-    const scale = 250;
+    const scale = 370;
     const cx = SURF_W * 0.48;
     const cy = SURF_H * 0.58;
 
@@ -243,23 +243,18 @@
       ctx.stroke();
     }
 
-    // Back edges of bounding box
+    // Back edges of bounding box (behind the surface)
     ctx.strokeStyle = '#bbb';
     ctx.lineWidth = 1;
-    const corners = [[1,0],[1,1],[0,1]];
-    for (let k = 0; k < corners.length - 1; k++) {
-      ctx.beginPath();
-      ctx.moveTo(...toS(proj(corners[k][0], corners[k][1], 0)));
-      ctx.lineTo(...toS(proj(corners[k+1][0], corners[k+1][1], 0)));
-      ctx.stroke();
-    }
+    ctx.beginPath(); ctx.moveTo(...toS(proj(0, 0, 0))); ctx.lineTo(...toS(proj(1, 0, 0))); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(...toS(proj(1, 0, 0))); ctx.lineTo(...toS(proj(1, 1, 0))); ctx.stroke();
 
-    // z-axis back lines (vertical guides)
+    // Vertical guides at back corners
     ctx.setLineDash([3, 3]);
     ctx.strokeStyle = '#ccc';
     ctx.lineWidth = 0.7;
     ctx.beginPath(); ctx.moveTo(...toS(proj(1, 0, 0))); ctx.lineTo(...toS(proj(1, 0, 1))); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(...toS(proj(0, 1, 0))); ctx.lineTo(...toS(proj(0, 1, 1))); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(...toS(proj(1, 1, 0))); ctx.lineTo(...toS(proj(1, 1, 1))); ctx.stroke();
     ctx.setLineDash([]);
 
     // ─ Draw surface quads ─
@@ -281,34 +276,34 @@
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 1.2;
 
-    // r-axis: (0,0,0)→(1,0,0)
-    ctx.beginPath(); ctx.moveTo(...toS(proj(0, 0, 0))); ctx.lineTo(...toS(proj(1, 0, 0))); ctx.stroke();
-    // t-axis: (0,0,0)→(0,1,0)
+    // r-axis: front-right edge (0,1,0)→(1,1,0)
+    ctx.beginPath(); ctx.moveTo(...toS(proj(0, 1, 0))); ctx.lineTo(...toS(proj(1, 1, 0))); ctx.stroke();
+    // t-axis: front-left edge (0,0,0)→(0,1,0)
     ctx.beginPath(); ctx.moveTo(...toS(proj(0, 0, 0))); ctx.lineTo(...toS(proj(0, 1, 0))); ctx.stroke();
-    // z-axis: (1,0,0)→(1,0,1)
-    ctx.beginPath(); ctx.moveTo(...toS(proj(1, 0, 0))); ctx.lineTo(...toS(proj(1, 0, 1))); ctx.stroke();
+    // z-axis: vertical at left corner (0,0,0)→(0,0,1)
+    ctx.beginPath(); ctx.moveTo(...toS(proj(0, 0, 0))); ctx.lineTo(...toS(proj(0, 0, 1))); ctx.stroke();
 
     // ─ Tick marks ─
     ctx.fillStyle = '#000';
     ctx.font = '11px "adobe-garamond-pro", Georgia, serif';
 
-    // r-axis ticks
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
+    // r-axis ticks along (v, 1, 0), labels offset outward
     for (const v of [0, 0.5, 1]) {
-      const tp = proj(v, -0.04, 0);
+      const tp = proj(v, 1.05, 0);
       const [tx, ty] = toS(tp);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
       ctx.fillText(v === 0 ? '0' : v === 1 ? '1' : '0.5', tx, ty + 2);
       ctx.beginPath();
-      ctx.moveTo(...toS(proj(v, 0, 0)));
-      ctx.lineTo(...toS(proj(v, -0.02, 0)));
+      ctx.moveTo(...toS(proj(v, 1, 0)));
+      ctx.lineTo(...toS(proj(v, 1.03, 0)));
       ctx.strokeStyle = '#000'; ctx.lineWidth = 1;
       ctx.stroke();
     }
 
-    // t-axis ticks
+    // t-axis ticks along (0, v, 0), labels offset outward
     for (const v of [0, 0.5, 1]) {
-      const tp = proj(-0.04, v, 0);
+      const tp = proj(-0.05, v, 0);
       const [tx, ty] = toS(tp);
       ctx.textAlign = 'right';
       ctx.textBaseline = 'middle';
@@ -320,18 +315,18 @@
       ctx.stroke();
     }
 
-    // z-axis ticks
+    // z-axis ticks along (0, 0, v), labels offset left
     var zTicks = [0, 0.25, 0.5, 0.75, 1.0];
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
     for (const v of zTicks) {
       const angle = Math.round(v * fixedMaxAngle);
-      const tp = proj(1.04, 0, v);
+      const tp = proj(-0.05, 0, v);
       const [tx, ty] = toS(tp);
-      ctx.fillText(angle + '°', tx + 2, ty);
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(angle + '°', tx - 2, ty);
       ctx.beginPath();
-      ctx.moveTo(...toS(proj(1, 0, v)));
-      ctx.lineTo(...toS(proj(1.02, 0, v)));
+      ctx.moveTo(...toS(proj(0, 0, v)));
+      ctx.lineTo(...toS(proj(-0.02, 0, v)));
       ctx.strokeStyle = '#000'; ctx.lineWidth = 1;
       ctx.stroke();
     }
@@ -340,23 +335,23 @@
     ctx.font = 'italic 14px "adobe-garamond-pro", Georgia, serif';
     ctx.fillStyle = '#000';
 
-    // r label
+    // r label (along front-right edge)
     ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-    var rp = toS(proj(0.5, -0.12, 0));
+    var rp = toS(proj(0.5, 1.15, 0));
     ctx.fillText('r', rp[0], rp[1]);
 
-    // t label
+    // t label (along front-left edge)
     ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
-    var tp = toS(proj(-0.12, 0.5, 0));
-    ctx.fillText('t', tp[0], tp[1]);
+    var tlp = toS(proj(-0.14, 0.5, 0));
+    ctx.fillText('t', tlp[0], tlp[1]);
 
-    // z label
+    // z label (along left vertical)
     ctx.save();
-    var zp = toS(proj(1.14, 0, 0.5));
+    var zp = toS(proj(-0.14, 0, 0.5));
     ctx.translate(zp[0], zp[1]);
     ctx.rotate(-Math.PI / 2);
     ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-    ctx.fillText('Angle diff (°)', 0, -2);
+    ctx.fillText('Angle diff (°)', 0, -4);
     ctx.restore();
   }
 

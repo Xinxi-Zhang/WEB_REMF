@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "trajan-pro-3";
+  src: url("data/fonts/Trajan.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "trajan-pro-3";
+  src: url("data/fonts/Trajan.ttf");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -96,7 +112,6 @@ body {
 
 /* ── Interactive Section ── */
 .interactive-section {
-  max-width: 1000px;
   margin: 5rem auto 0;
   padding: 0 2rem;
 }
@@ -104,19 +119,19 @@ body {
 .section-heading {
   text-align: center;
   font-family: "trajan-pro-3", serif;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .section-text {
   text-align: center;
   font-family: "adobe-garamond-pro", serif;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   line-height: 1.7;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto 2.5rem;
   color: #333;
 }
@@ -135,11 +150,11 @@ body {
 
 .viz-title {
   font-family: "trajan-pro-3", serif;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .viz-panel canvas {
@@ -158,7 +173,7 @@ body {
 
 .slider-end {
   font-family: "trajan-pro-3", serif;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -168,7 +183,7 @@ body {
 .slider-caption {
   text-align: center;
   font-family: "adobe-garamond-pro", serif;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-style: italic;
   color: #888;
 }
@@ -176,7 +191,7 @@ body {
 #curvatureSlider {
   -webkit-appearance: none;
   appearance: none;
-  width: 300px;
+  width: 480px;
   height: 2px;
   background: #000;
   outline: none;
