@@ -71,6 +71,41 @@
     <div class="slider-caption">Trajectory Curvature</div>
   </section>
 
+  <section class="method-section">
+    <h2 class="section-heading">Method</h2>
+    <p class="section-text">
+      MeanFlow learns the mean velocity field directly on the original generative trajectories,
+      but high curvature makes the target landscape rugged and hard to fit.
+      Re-MeanFlow first rectifies the underlying trajectories into near-straight paths,
+      then models the mean velocity on these simplified couplings — dramatically
+      reducing curvature and accelerating convergence.
+    </p>
+    <div class="method-figure">
+      <img src="data/images/pubs/method.png" alt="Re-MeanFlow method: rectifying curved trajectories to simplify the curvature landscape">
+      <div class="method-labels">
+        <span class="method-label">MeanFlow</span>
+        <span class="method-label">Re-MeanFlow (Ours)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="results-section">
+    <h2 class="section-heading">Smoother Landscape, Faster Convergence</h2>
+    <p class="section-text">
+      Trajectory rectification transforms MeanFlow's rugged loss landscape into a smooth surface,
+      eliminating sharp spikes that stall optimization.
+      The result: Re-MeanFlow reaches strong FID scores in a fraction of the training time.
+    </p>
+    <div class="results-figure">
+      <img src="data/images/pubs/main.png" alt="Loss landscape comparison and convergence speed">
+      <div class="results-labels">
+        <span class="results-label">MeanFlow Loss Landscape</span>
+        <span class="results-label">Re-MeanFlow Loss Landscape</span>
+        <span class="results-label">Convergence Speed</span>
+      </div>
+    </div>
+  </section>
+
   <script src="js/interactive.js"></script>
 </body>
 </html>
