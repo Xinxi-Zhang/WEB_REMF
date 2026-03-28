@@ -3,174 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xinxi Zhang</title>
-  <!-- Link to CSS -->
+  <title>Re-MeanFlow | Overcoming the Curvature Bottleneck in MeanFlow</title>
   <link rel="stylesheet" href="https://use.typekit.net/ujq0ydv.css">
   <link rel="stylesheet" href="style.css">
-  <script>
-    (function(d) {
-      var config = {
-        kitId: 'oed5xho',
-        scriptTimeout: 3000,
-        async: true
-      },
-      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
-  </script>
   <link rel="icon" type="image/png" href="data/images/icons/web.png">
 </head>
-
-<script src="script.js"></script>
 <body>
 
-  <!-- ******************************************************* -->
-  <!-- ************* Header Section ************************** -->
-  <!-- ******************************************************* -->
-  <div class="navbar-container">
-    <img src="data/images/header.png" alt="Header Image" class="header-image">
-    <div class="hero-header">
-      <div class="hero-meta">
-        <div class="hero-meta-title">The Inside of My Head</div>
-        <div class="hero-meta-subtitle">Last Updated Feb 28, 2026</div>
+  <div class="page">
+
+    <h1 class="title">Overcoming the Curvature Bottleneck in MeanFlow</h1>
+
+    <div class="authors">
+      <a href="https://scholar.google.com/citations?user=08KI_O0AAAAJ&hl=en" target="_blank">Xinxi Zhang</a>*,
+      <a href="https://scholar.google.com/citations?user=XUsD3_kAAAAJ&hl=zh-CN" target="_blank">Shiwei Tan</a>*,
+      <a href="https://scholar.google.com/citations?user=SUuo7U4AAAAJ&hl=en" target="_blank">Quang Nguyen</a>,
+      <a href="https://scholar.google.com/citations?user=g0RS3_kAAAAJ&hl=en" target="_blank">Quan Dao</a>,
+      <a href="https://scholar.google.com/citations?user=n2v43R4AAAAJ&hl=en" target="_blank">Ligong Han</a>,
+      <a href="https://scholar.google.com/citations?user=WmK6IOEAAAAJ&hl=en" target="_blank">Xiaoxiao He</a>,
+      <a href="https://scholar.google.com/citations?user=y3st15YAAAAJ&hl=en" target="_blank">Tunyu Zhang</a><br>
+      <a href="https://scholar.google.com/citations?user=pTTEiHUAAAAJ&hl=en" target="_blank">Chengzhi Mao</a>,
+      <a href="https://scholar.google.com/citations?user=a7VNhCIAAAAJ&hl=en" target="_blank">Dimitris Metaxas</a>,
+      <a href="https://scholar.google.com/citations?user=8MQT8skAAAAJ" target="_blank">Vladimir Pavlovic</a>
+    </div>
+
+    <div class="affiliations">Rutgers University</div>
+
+    <div class="equal-note">* Equal Contribution</div>
+
+    <div class="buttons">
+      <a href="https://arxiv.org/abs/2511.23342" target="_blank" class="btn">ARXIV</a>
+      <a href="https://github.com/Xinxi-Zhang/Re-MeanFlow" target="_blank" class="btn">GITHUB</a>
+    </div>
+
+  </div>
+
+  <section class="interactive-section">
+    <h2 class="section-heading">The Curvature Bottleneck</h2>
+    <p class="section-text">
+      A curved generative trajectory induces a complex velocity–direction angle landscape
+      over the time grid. Straightening the path dramatically simplifies this surface,
+      making mean-velocity learning faster and more stable.
+    </p>
+
+    <div class="viz-row">
+      <div class="viz-panel">
+        <div class="viz-title">Flow Trajectory</div>
+        <canvas id="trajCanvas"></canvas>
+      </div>
+      <div class="viz-panel">
+        <div class="viz-title">Velocity–Direction Angle</div>
+        <canvas id="heatCanvas"></canvas>
       </div>
     </div>
-  </div>
 
-  <div class="links-container">
-    <nav class="hero-links">
-      <a href="https://scholar.google.com/citations?user=08KI_O0AAAAJ&hl=en" target="_blank">GOOGLE SCHOLAR</a>
-      <a href="https://drive.google.com/file/d/1AV5ixhQW2kzQRVKK-_Qj-ITQBmfip4qQ/view?usp=sharing" target="_blank">CV</a>
-      <a href="mailto:xinxi.zhang@rutgers.edu">EMAIL</a>
-      <a href="https://www.linkedin.com/in/xinxi-zhang-002974237/" target="_blank">LINKEDIN</a>
-    </nav>
-  </div>
-
-  <section class="about-section" id="about">
-    <!-- <div class="about-label">ABOUT ME</div> -->
-  
-    <p class="about-text">
-      Hello, I am Xinxi Zhang, a PhD student in the Department of
-      Computer Science at Rutgers University, advised by
-      <a href="https://www.cs.rutgers.edu/people/professors/details/vladimir-pavlovic" target="_blank">
-        Prof. Vladimir Pavlovic
-      </a> and also fortunate to work with <a href="https://www.cs.rutgers.edu/people/professors/details/dimitris-metaxas" target="_blank">
-        Prof. Dimitris Metaxas
-      </a>. Echoing Richard Feynman’s quote that “what I cannot create,
-      I do not understand,” my research focuses on generative modeling, with a current emphasis on advancing one-step diffusion/flow-based models. 
-      More recently, I have also been extending these concepts to the language domain.
-    </p>
-  </section>
-
-  <div class="research-container">
-    <nav class="research-links">
-      RESEARCH PROJECTS
-    </nav>
-  </div>  
-
-  <section class="projects-section" id="projects">
-  
-    <div class="project-grid">
-
-      <article class="project-card">
-        <div class="project-thumb">
-          <img src="data/images/pubs/T3D.png" alt="T3D">
-        </div>
-        <div class="project-body">
-          <h3>T3D: Few-Step Diffusion Language Models via Trajectory Self-Distillation with Direct Discriminative Optimization </h3>
-          <p class="project-authors" data-authors="tunyu-zhang,xinxi-zhang,ligong-han,haizhou-shi,xiaoxiao-he,zhuowei-li,hao-wang2,kai-xu,akash-srivastava,hao-wang,vladimir-pavlovic,dimitris-metaxas"
-            data-stars="tunyu-zhang,xinxi-zhang">
-            Tunyu Zhang*, <strong style="text-decoration: underline;">Xinxi Zhang</strong>*, Ligong Han, Haizhou Shi, Xiaoxiao He, Zhuowei Li, Hao Wang, Kai Xu, Akash Srivastava, Hao Wang, Vladimir Pavlovic, Dimitris N. Metaxas
-          </p>
-
-          <p>
-            T3D (Trajectory Self-Distillation via DDO) is a self-distillation framework for diffusion large language models (DLLMs) that trains a few-step student by matching the teacher’s generation trajectories.
-            We show theoretically that trajectory-level distillation enables few-step decoding by reducing factorization error, and empirically that T3D consistently outperforms existing few-step decoding baselines.
-          </p>
-          <a class="project-link" href="https://arxiv.org/pdf/2602.12262" target="_blank">
-            Paper (Preprint)
-          </a>
-          <a class="project-link" href="https://github.com/Tyrion58/T3D" target="_blank">
-            Code
-          </a>
-          <a class="project-link" href="https://drive.google.com/file/d/157cxMFqFJBZJwc-n6ugjXsAwUKMGGOFb/view?usp=sharing" target="_blank">
-            Slides
-          </a>
-          <a class="project-tag">
-            DIFFUSION LANGUAGE MODEL
-          </a>
-          <a class="project-tag">
-            FEW-STEP GENERATION
-          </a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-thumb">
-          <img src="data/images/pubs/REMF.png" alt="Re-Meanflow">
-        </div>
-        <div class="project-body">
-          <h3>Overcoming the Curvature Bottleneck in MeanFlow </h3>
-          <p class="project-authors" data-authors="xinxi-zhang,shiwei-tan,quang-nguyen,quan-dao,ligong-han,xiaoxiao-he,tunyu-zhang,chengzhi-mao,dimitris-metaxas,vladimir-pavlovic"
-            data-stars="xinxi-zhang,shiwei-tan">
-            <strong style="text-decoration: underline;">Xinxi Zhang</strong>*, Shiwei Tan*, Quang Nguyen, Quan Dao, Ligong Han, Xiaoxiao He, Tunyu Zhang*, Chengzhi Mao, Dimitris Metaxas, Vladimir Pavlovic
-          </p>
-
-          <p>
-            Re-MeanFlow is a lightweight, data-free self-distillation framework for one-step flow generation that learns the mean-velocity field on rectified couplings from a pretrained model. 
-            By straightening generative trajectories, Re-MeanFlow smooths the rugged loss landscape of MeanFlow and delivers markedly stronger sample quality with much higher training efficiency.
-          </p>
-          <a class="project-link" href="https://arxiv.org/abs/2511.23342" target="_blank">
-            Paper (Preprint)
-          </a>
-          <a class="project-link" href="https://github.com/Xinxi-Zhang/Re-MeanFlow" target="_blank">
-            Code
-          </a>
-          <a class="project-link" href="https://drive.google.com/file/d/1rk5PWi_O8Hf5dayH1J5GGleHGGpNUhpy/view?usp=sharing" target="_blank">
-            Slides
-          </a>
-          <a class="project-tag">
-            ONE-STEP GENERATION
-          </a>
-          <a class="project-tag">
-            EFFICIENT TRAINING
-          </a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-thumb">
-          <img src="data/images/pubs/SODA.png" alt="SODA">
-        </div>
-        <div class="project-body">
-          <h3>SODA: Spectral Orthogonal Decomposition Adaptation for Diffusion Models</h3>
-          <p class="project-authors" data-authors="xinxi-zhang,song-wen,ligong-han,felix-juefei-xu,akash-srivastava,junzhou-huang,hao-wang,molei-tao,vladimir-pavlovic,dimitris-metaxas"
-            data-stars="xinxi-zhang,song-wen, ligong-han">
-            <strong style="text-decoration: underline;">Xinxi Zhang</strong>*, Song Wen*, Ligong Han*, Felix Juefei-Xu, Akash Srivastava, Junzhou Huang, Hao Wang, Molei Tao, Vladimir Pavlovic, Dimitris Metaxas
-          </p>
-
-          <p>
-            SODA is a spectrum-aware, parameter-efficient fine-tuning framework for diffusion models. 
-            We demonstrate its effectiveness on the task of personalizing text-to-image diffusion models: 
-            given only a few images of an object, SODA can generate novel scenes of the object controlled by text prompts, using only a lightweight fine-tuning stage.
-          </p>
-          <a class="project-link" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10944068" target="_blank">
-            PAPER (WACV 2025)
-          </a>
-          <a class="project-tag">
-            DIFFUSION PERSONALIZATION
-          </a>
-          <a class="project-tag">
-            PARAMETER-EFFICIENT FINE-TUNING
-          </a>
-        </div>
-      </article>   
-      
-      
-      <script src="js/authors.js" defer></script>
-  
+    <div class="slider-row">
+      <span class="slider-end">Straight</span>
+      <input type="range" id="curvatureSlider" min="0" max="80" value="60" step="1">
+      <span class="slider-end">Curved</span>
     </div>
+    <div class="slider-caption">Trajectory Curvature</div>
   </section>
-  
 
+  <script src="js/interactive.js"></script>
 </body>
 </html>
