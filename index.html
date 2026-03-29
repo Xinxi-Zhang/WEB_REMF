@@ -116,6 +116,107 @@
     </div>
   </section>
 
+  <section class="benchmarks-section">
+    <h2 class="section-heading">Results</h2>
+    <p class="section-text">
+      Compared to prior state-of-the-art flow-based one-step methods,
+      <span class="hl"><b>Re-MeanFlow</b> achieves the best FID across all settings,</span>
+      outperforming both one-step distillation and training-from-scratch methods
+      on class-conditional ImageNet generation.
+    </p>
+
+    <div class="tables-row">
+
+      <div class="bench-table">
+        <div class="bench-caption">ImageNet 64&times;64</div>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>NFE</th><th>FID</th></tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="3">Diffusion models</td></tr>
+            <tr><td>EDM2-S</td><td>63 &times; 2</td><td>1.58</td></tr>
+            <tr><td>&ensp;+ Autoguidance</td><td>63 &times; 2</td><td>1.01</td></tr>
+            <tr><td>EDM2-XL</td><td>63 &times; 2</td><td>1.33</td></tr>
+            <tr class="group-header"><td colspan="3">Few-step models</td></tr>
+            <tr><td>2-rectified flow++</td><td>1</td><td>4.31</td></tr>
+            <tr><td>iCT</td><td>1</td><td>4.02</td></tr>
+            <tr><td>ECD-S</td><td>1</td><td>3.30</td></tr>
+            <tr><td>sCD-S</td><td>1</td><td>2.97</td></tr>
+            <tr><td>TCM</td><td>1</td><td>2.88</td></tr>
+            <tr><td>AYF</td><td>1</td><td>2.98</td></tr>
+            <tr class="ours"><td><b>Re-MeanFlow (ours)</b></td><td>1</td><td><b>2.87</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bench-table">
+        <div class="bench-caption">ImageNet 256&times;256</div>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>NFE</th><th>FID</th></tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="3">Diffusion models</td></tr>
+            <tr><td>ADM</td><td>250 &times; 2</td><td>10.94</td></tr>
+            <tr><td>DiT-XL</td><td>250 &times; 2</td><td>2.27</td></tr>
+            <tr><td>SiT-XL</td><td>250 &times; 2</td><td>2.06</td></tr>
+            <tr><td>SiT-XL + REPA</td><td>250 &times; 2</td><td>1.42</td></tr>
+            <tr class="group-header"><td colspan="3">Few-step models</td></tr>
+            <tr><td>iCT</td><td>1</td><td>34.6</td></tr>
+            <tr><td>SM</td><td>1</td><td>10.6</td></tr>
+            <tr><td>iSM</td><td>1</td><td>5.27</td></tr>
+            <tr><td>iMM</td><td>1 &times; 2</td><td>7.77</td></tr>
+            <tr><td>MeanFlow</td><td>1</td><td>3.43</td></tr>
+            <tr class="ours"><td><b>Re-MeanFlow (ours)</b></td><td>1</td><td><b>3.41</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bench-table">
+        <div class="bench-caption">ImageNet 512&times;512</div>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>NFE</th><th>FID</th></tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="3">Diffusion models</td></tr>
+            <tr><td>EDM2-S</td><td>63 &times; 2</td><td>2.23</td></tr>
+            <tr><td>&ensp;+ Autoguidance</td><td>63 &times; 2</td><td>1.34</td></tr>
+            <tr><td>EDM2-XXL</td><td>63 &times; 2</td><td>1.81</td></tr>
+            <tr class="group-header"><td colspan="3">Few-step models</td></tr>
+            <tr><td>ECT</td><td>1</td><td>9.98</td></tr>
+            <tr><td>ECD</td><td>1</td><td>8.47</td></tr>
+            <tr><td>CMT</td><td>1</td><td>3.38</td></tr>
+            <tr><td>sCT-S</td><td>1</td><td>10.13</td></tr>
+            <tr><td>sCD-S</td><td>1</td><td>3.07</td></tr>
+            <tr><td>AYF</td><td>1</td><td>3.32</td></tr>
+            <tr class="ours"><td><b>Re-MeanFlow (ours)</b></td><td>1</td><td><b>3.03</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="samples-figure">
+      <img src="data/images/pubs/result.png" alt="Re-MeanFlow one-step generation samples on ImageNet">
+      <p class="figure-note">One-step generation (NFE=1) on ImageNet at 64&times;64 (left), 256&times;256 (middle), and 512&times;512 (right).</p>
+    </div>
+  </section>
+
+  <section class="cite-section">
+    <h2 class="section-heading">BibTeX</h2>
+    <pre class="bibtex"><code>@misc{zhang2026overcomingcurvaturebottleneckmeanflow,
+      title={Overcoming the Curvature Bottleneck in MeanFlow}, 
+      author={Xinxi Zhang and Shiwei Tan and Quang Nguyen and Quan Dao and Ligong Han and Xiaoxiao He and Tunyu Zhang and Chengzhi Mao and Dimitris Metaxas and Vladimir Pavlovic},
+      year={2026},
+      eprint={2511.23342},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.23342}, 
+}</code></pre>
+  </section>
+
   <script src="js/interactive.js"></script>
 </body>
 </html>
