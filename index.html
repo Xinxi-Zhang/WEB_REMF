@@ -6,6 +6,10 @@
   <title>Re-MeanFlow | Overcoming the Curvature Bottleneck in MeanFlow</title>
   <link rel="stylesheet" href="https://use.typekit.net/ujq0ydv.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
   <link rel="icon" type="image/png" href="data/images/icons/web.png">
   <script>
     (function(d) {
@@ -47,9 +51,12 @@
   <section class="interactive-section">
     <h2 class="section-heading">The Curvature Bottleneck</h2>
     <p class="section-text">
-      A curved generative trajectory induces a complex velocity–direction angle landscape
-      over the time grid. Straightening the path dramatically simplifies this surface,
-      making mean-velocity learning faster and more stable.t
+      Meanflow offers a promising framework for one-step generative modeling by directly learning a mean-velocity field, bypassing expensive numerical integration. 
+      The challenge, however, lies in the geometry of the trajectory itself. Under the standard independent data-noise coupling, these trajectories are highly curved. 
+      We argue that this <span class="hl"><b>curvature</b> is a key bottleneck for efficient mean-velocity modeling</span>: 
+      intuitively, learning the mean velocity on a straight trajectory is much easier than learning it on a curved one. 
+      Motivated by this observation, <span class="hl">we propose <b>Re-MeanFlow</b>, which learns the mean-velocity field on rectified, straighter trajectories.</span>
+      By addressing the curvature bottleneck, <b>Re-MeanFlow</b> enables substantially more efficient mean-velocity modeling.
     </p>
 
     <div class="viz-row">
@@ -58,7 +65,7 @@
         <canvas id="trajCanvas"></canvas>
       </div>
       <div class="viz-panel">
-        <div class="viz-title">Velocity–Direction Angle</div>
+        <div class="viz-title">Trajectory Curvature</div>
         <canvas id="heatCanvas"></canvas>
       </div>
     </div>
@@ -72,37 +79,40 @@
   </section>
 
   <section class="method-section">
-    <h2 class="section-heading">Method</h2>
+    <h2 class="section-heading">Re-MeanFlow</h2>
     <p class="section-text">
-      MeanFlow learns the mean velocity field directly on the original generative trajectories,
-      but high curvature makes the target landscape rugged and hard to fit.
-      Re-MeanFlow first rectifies the underlying trajectories into near-straight paths,
-      then models the mean velocity on these simplified couplings — dramatically
-      reducing curvature and accelerating convergence.
+      MeanFlow learns the mean-velocity field under the standard independent coupling \(p(\mathbf{x},\mathbf{z}) = p(\mathbf{x})\,p(\mathbf{z})\),
+      whose induced generative trajectories are known to be highly curved. <span class="hl"><b>Re-MeanFlow</b> instead trains on a rectified coupling</span>,
+      where each noise sample \(\mathbf{z}\) is paired with a data sample \(\mathbf{x}\) obtained by solving the transport process with a pretrained flow model,
+      analogous to the reflow procedure in Rectified Flow. <span class="hl">This rectified pairing produces substantially straighter trajectories</span>, making the mean-velocity field much easier to learn.
     </p>
     <div class="method-figure">
-      <img src="data/images/pubs/method.png" alt="Re-MeanFlow method: rectifying curved trajectories to simplify the curvature landscape">
       <div class="method-labels">
-        <span class="method-label">MeanFlow</span>
-        <span class="method-label">Re-MeanFlow (Ours)</span>
+        <span class="method-label">MeanFlow on Curved Trajectory</span>
+        <span class="method-label">Re-MeanFlow on Rectified Trajectory</span>
       </div>
+      <img src="data/images/pubs/method.png" alt="Re-MeanFlow method: rectifying curved trajectories to simplify the curvature landscape">
+      <p class="figure-note">Curvature surfaces \(\mathrm{Curv}(r,t)\) are computed from real generative trajectories on ImageNet, with
+        <br><span style="display:inline-block;margin-top:0.5em">\(\mathrm{Curv}(r,t)=\mathbb{E}_{\mathbf{z}_t\sim p_t}\!\Big[\angle\!\big(u(\mathbf{z}_t,r,t),\,v(\mathbf{z}_t,t)\big)\Big]\).</span>
+      </p>
     </div>
   </section>
 
   <section class="results-section">
     <h2 class="section-heading">Smoother Landscape, Faster Convergence</h2>
     <p class="section-text">
-      Trajectory rectification transforms MeanFlow's rugged loss landscape into a smooth surface,
-      eliminating sharp spikes that stall optimization.
-      The result: Re-MeanFlow reaches strong FID scores in a fraction of the training time.
+      Straighter trajectories make mean-velocity learning dramatically easier. 
+      With the same initialization, <span class="hl"><b>Re-MeanFlow</b> converges substantially faster than MeanFlow.</span>
+      Visualizing the loss landscape along two PCA directions reveals why: MeanFlow exhibits a rugged, sharply peaked landscape, whereas Re-MeanFlow is markedly smoother and better conditioned, 
+      making optimization significantly easier.
     </p>
     <div class="results-figure">
-      <img src="data/images/pubs/main.png" alt="Loss landscape comparison and convergence speed">
       <div class="results-labels">
         <span class="results-label">MeanFlow Loss Landscape</span>
         <span class="results-label">Re-MeanFlow Loss Landscape</span>
-        <span class="results-label">Convergence Speed</span>
+        <span class="results-label">Convergence Speed (FID vs GPU Hours)</span>
       </div>
+      <img src="data/images/pubs/main.png" alt="Loss landscape comparison and convergence speed">
     </div>
   </section>
 

@@ -28,7 +28,7 @@
   let fixedMaxAngle = 90;
   let trajCtx, surfCtx;
   const TRAJ_W = 620, TRAJ_H = 560;
-  const SURF_W = 680, SURF_H = 580;
+  const SURF_W = 780, SURF_H = 580;
 
   // ── Math ──────────────────────────────────────────────
 
@@ -157,17 +157,17 @@
     const [dx, dy] = toC(0, 0);
     const [nx, ny] = toC(1, 1);
     ctx.fillStyle = '#c0392b';
-    ctx.beginPath(); ctx.arc(dx, dy, 7, 0, 2 * Math.PI); ctx.fill();
+    ctx.beginPath(); ctx.arc(dx, dy, 9, 0, 2 * Math.PI); ctx.fill();
     ctx.fillStyle = '#27ae60';
-    ctx.beginPath(); ctx.arc(nx, ny, 7, 0, 2 * Math.PI); ctx.fill();
+    ctx.beginPath(); ctx.arc(nx, ny, 9, 0, 2 * Math.PI); ctx.fill();
 
-    ctx.font = 'italic 15px "adobe-garamond-pro", Georgia, serif';
+    ctx.font = 'bold 24px "adobe-garamond-pro", Georgia, serif';
     ctx.fillStyle = '#c0392b';
     ctx.textAlign = 'left';
-    ctx.fillText('x  (data)', dx + 14, dy + 5);
+    ctx.fillText('x  (data)', dx + 16, dy + 8);
     ctx.fillStyle = '#27ae60';
     ctx.textAlign = 'right';
-    ctx.fillText('z  (noise)', nx - 14, ny - 8);
+    ctx.fillText('z  (noise)', nx - 16, ny - 12);
   }
 
   // ── 3D Surface panel ──────────────────────────────────
@@ -177,7 +177,7 @@
     ctx.clearRect(0, 0, SURF_W, SURF_H);
 
     const scale = 370;
-    const cx = SURF_W * 0.48;
+    const cx = SURF_W * 0.52;
     const cy = SURF_H * 0.58;
 
     function toS(p) {
@@ -274,7 +274,7 @@
 
     // ─ Front axes (on top) ─
     ctx.strokeStyle = '#000';
-    ctx.lineWidth = 1.2;
+    ctx.lineWidth = 1.6;
 
     // r-axis: front-right edge (0,1,0)→(1,1,0)
     ctx.beginPath(); ctx.moveTo(...toS(proj(0, 1, 0))); ctx.lineTo(...toS(proj(1, 1, 0))); ctx.stroke();
@@ -285,7 +285,7 @@
 
     // ─ Tick marks ─
     ctx.fillStyle = '#000';
-    ctx.font = '11px "adobe-garamond-pro", Georgia, serif';
+    ctx.font = '16px "adobe-garamond-pro", Georgia, serif';
 
     // r-axis ticks along (v, 1, 0), labels offset outward
     for (const v of [0, 0.5, 1]) {
@@ -332,26 +332,26 @@
     }
 
     // ─ Axis labels ─
-    ctx.font = 'italic 14px "adobe-garamond-pro", Georgia, serif';
+    ctx.font = 'italic 22px "adobe-garamond-pro", Georgia, serif';
     ctx.fillStyle = '#000';
 
     // r label (along front-right edge)
     ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-    var rp = toS(proj(0.5, 1.15, 0));
+    var rp = toS(proj(0.5, 1.22, 0));
     ctx.fillText('r', rp[0], rp[1]);
 
     // t label (along front-left edge)
     ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
-    var tlp = toS(proj(-0.14, 0.5, 0));
+    var tlp = toS(proj(-0.18, 0.5, 0));
     ctx.fillText('t', tlp[0], tlp[1]);
 
     // z label (along left vertical)
     ctx.save();
-    var zp = toS(proj(-0.14, 0, 0.5));
+    var zp = toS(proj(-0.18, 0, 0.5));
     ctx.translate(zp[0], zp[1]);
     ctx.rotate(-Math.PI / 2);
     ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-    ctx.fillText('Angle diff (°)', 0, -4);
+    ctx.fillText('Curv(r, t)', 0, -6);
     ctx.restore();
   }
 
