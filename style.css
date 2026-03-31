@@ -151,7 +151,7 @@ body {
 .viz-panel canvas {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: auto !important;
 }
 
 .slider-row {
